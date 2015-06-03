@@ -11,8 +11,14 @@ class Posts extends CI_controller{
         $this->load->model('post');
     }
 
-    function index(){
-        $data['posts'] = $this->post->get_posts();
+    function index($start=0){
+        $data['posts'] = $this->post->get_posts(5,$start);
+        $this->load->library('pagination');
+        $config['base_url'] = base_url().'posts/index/';
+        $config['total_rows'] = $this->post->get_posts_count();
+        $config['per_page'] = 5;
+        $this->pagination->initialize($config);
+        $data['pages'] = $this->pagination->create_links();
        /* echo '<pre>';
         print_r($data);
         echo '</pre>';*/

@@ -14,8 +14,9 @@
                 background-color: #B3B4BD;
                 margin-bottom: 10px;
                 padding: 20px;
+                border-radius: 25px;
             }
-            .post a {
+            .post  a {
                 color: #5a0099;
                 text-decoration: none;
             }
@@ -24,6 +25,14 @@
             }
             .post .date {
                 color: darkred;
+            }
+            .pagination {
+                font-size: 2em;
+                color: cornflowerblue;
+                text-decoration: none;
+            }
+            .pagination a{
+                text-decoration: none;
             }
         </style>
     </head>
@@ -50,6 +59,9 @@
               }
               }
            ?>
+       </div>
+       <div class="pagination">
+           <?= $pages?>
        </div>
    </div>
  </body>

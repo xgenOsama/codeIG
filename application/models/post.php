@@ -29,6 +29,11 @@ class Post extends CI_Model{
     }
 
 
+    public  function get_posts_count(){
+        $this->db->select()->from('posts')->where('active',1);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
     public function get_post($postID){
        // return $this->db->get_where('posts',['postID'=>$postID,'active'=>1]);
        /* $this->db->select('*')->from('posts')->where(['postID'=>$postID,'active'=>1])->order_by('data_added','DESC');*/
