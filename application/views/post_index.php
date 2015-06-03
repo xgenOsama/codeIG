@@ -40,9 +40,9 @@
               foreach ($posts as $post) {
                   ?>
                   <div class="post">
-                  <h2><a href="<?= base_url() ?>/posts/post/<?= $post['postID'] ?>"><?= $post['title'] ?></a></h2>
+                  <h2><a href="<?= base_url() ?>posts/post/<?= $post['postID'] ?>"><?= $post['title'] ?></a> | <a href="<?=base_url()?>posts/editpost/<?=$post['postID']?>">Edit</a> | <a href="<?=base_url()?>posts/deletepost/<?=$post['postID']?>">Delete</a></h2>
                   <p><?= substr(strip_tags($post['post']), 0, 200) . ".." ?></p>
-                  <p><a href="<?= base_url() ?>/posts/post/<?= $post['postID'] ?>">Read more</a></p>
+                  <p><a href="<?= base_url() ?>posts/post/<?= $post['postID'] ?>">Read more</a></p>
                   <p class="date">published at: <span style="color: #E13300"><?=$post['data_added'] ?></span></p>
                   <hr/>
                   </div>
