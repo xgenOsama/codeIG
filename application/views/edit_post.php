@@ -3,7 +3,7 @@
         <title></title>
     </head>
     <body>
-        <?php if(isset($success) && $success==1){ ?>
+        <?php if(isset($success) && $success == 1){ ?>
             <div style="color: #ffffff;background: green">
                 The post has been successfully edited
             </div>
