@@ -7,5 +7,5 @@
     </ul>
 
 <p>
-    <a href="<?=base_url()?>upload"></a>
+    <a href="<?=base_url()?>upload">Upload other file</a>
 </p>
