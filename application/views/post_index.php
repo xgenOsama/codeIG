@@ -17,7 +17,7 @@
             padding: 20px;
             border-radius: 25px;
         }
-        .post  a {
+        a {
             color: #5a0099;
             text-decoration: none;
         }
@@ -38,6 +38,12 @@
     </style>
 </head>
 <body>
+    <?php if($this->session->userdata('userID')){ ?>
+        <p>you are logged in :)</p>
+        <p><a href="<?=base_url()?>users/logout">logout</a></p>
+    <?php } else {?>
+        <p><a href="<?=base_url()?>users/login">login</a></p>
+    <?php } ?>
 <div id="warper">
     <h1>osama app post :</h1>
     <div class="container">

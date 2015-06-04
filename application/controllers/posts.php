@@ -8,6 +8,7 @@ class Posts extends CI_controller{
     public function __construct()
     {
         parent::__construct();
+        $this->load->library('session');
         $this->load->model('post');
     }
 
@@ -22,6 +23,7 @@ class Posts extends CI_controller{
        /* echo '<pre>';
         print_r($data);
         echo '</pre>';*/
+        $data['this'] = $this;
         $this->load->view('post_index',$data);
     }
 

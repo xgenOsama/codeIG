@@ -2,6 +2,10 @@
 
 class Users extends CI_Controller{
 
+
+    public function _construct(){
+        $this->load->library('session');
+    }
     function login(){
         $data['error'] = 0 ;
         if($_POST){
