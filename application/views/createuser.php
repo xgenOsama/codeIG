@@ -1,5 +1,7 @@
-<?php if($error == 1 ){ ?>
-    <p>An error occured try again.</p>
+<?php if($errors){ ?>
+    <div style="color:darkred;">
+    <p><?=$errors ?></p>
+    </div>
 <?php }
     if($this->session->userdata('userID') && $this->session->userdata('user_type') != 'admin'){
         redirect(base_url());
@@ -18,7 +20,8 @@
               'name' => 'username',
                 'size' => 50,
                 'style' => 'border:1px solid black',
-                'id' => 'username'
+                'id' => 'username',
+                'value' => set_value('Username')
             ];
         echo form_input($data_form);
         ?>
@@ -32,6 +35,17 @@
                 'class' => 'blackborder'
             ];
            echo form_password($data);
+        ?>
+    </p>
+    <p><?= form_label('Confirm password','password2')?><!--<input type="text" name="password"/>-->
+        <?php
+        $data = [
+            'id' => 'password2',
+            'name' => 'password2',
+            'size' => 50,
+            'class' => 'blackborder'
+        ];
+        echo form_password($data);
         ?>
     </p>
     <?php

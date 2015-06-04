@@ -37,8 +37,45 @@ class Users extends CI_Controller{
     function create_user(){
         $this->load->model('user');
         $this->load->library('session');
-        $data['error'] = 0;
+        $data['errors'] = 0;
         if($_POST){
+
+            $config = [
+               array(
+                'field' => 'username',
+                'label' => 'Username',
+                'rules' => 'trim|required|min_length[3]|is_unique[users.username]'
+               ),
+               array(
+                   'field' => 'password',
+                   'label' => 'Password',
+                   'rules' => 'trim|required|min_length[5]|max_length[15]'
+               ),
+                array(
+                    'field' => 'password2',
+                    'label' => 'Confirm Password',
+                    'rules' => 'trim|required|min_length[5]|max_length[15]|matches[password]'
+                ),
+                array(
+                    'field' => 'user_type',
+                    'label' => 'User Type',
+                    'rules' => 'trim|required'
+                ),
+                array(
+                   'field' => 'email',
+                    'label' => 'Email',
+                    'rules' => 'trim|required|is_unique[users.email]|valid_email'
+                )
+            ];
+
+            $this->load->library('form_validation');
+
+            $this->form_validation->set_rules($config);
+
+            if($this->form_validation->run() == FALSE){
+                $data['errors'] = validation_errors();
+            } else{
+
             $email = $this->input->post('email',true);
             $username = $this->input->post('username',true);
             $password = $this->input->post('password',true);
@@ -57,6 +94,7 @@ class Users extends CI_Controller{
                 $data['error'] = 1;
             }
             redirect(base_url().'posts/index');
+        }
         }
         $this->load->helper('form');
         $this->load->view('header');
