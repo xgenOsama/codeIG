@@ -35,6 +35,10 @@ class Posts extends CI_controller{
 
 
     function new_post(){
+        $user_type = $this->session->userdata('user_type');
+        if($user_type != 'admin' && $user_type != 'author'){
+            redirect(base_url().'users/login');
+        }
         if($_POST){
             $data = array(
                 'title' => $_POST['title'],
@@ -49,7 +53,29 @@ class Posts extends CI_controller{
     }
 
 
+    /// this for check permissions i thought this function is an ass hole
+    function correct_permissions($required){
+       $user_type = $this->session->userdata('user_type');
+        if($required == 'user'){
+            if($user_type){
+                return true;
+            }
+        }else if($required == 'author'){
+            if($user_type == 'admin' || $user_type =='author'){
+                return true;
+            }
+        }else if($required == 'admin'){
+            if($user_type == 'admin'){
+                return true;
+            }
+        }
+    }
+
     public function editpost($postID){
+        $user_type = $this->session->userdata('user_type');
+        if($user_type != 'admin' && $user_type != 'author'){
+            redirect(base_url().'users/login');
+        }
         $data['success'] = 0 ;
         if($_POST){
             $data_post = array(
@@ -65,6 +91,10 @@ class Posts extends CI_controller{
     }
 
     function deletepost($postID){
+        $user_type = $this->session->userdata('user_type');
+        if($user_type != 'admin' && $user_type != 'author'){
+            redirect(base_url().'users/login');
+        }
         $this->post->delete_post($postID);
        redirect(base_url());
     }

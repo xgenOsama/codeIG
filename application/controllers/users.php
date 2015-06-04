@@ -36,6 +36,7 @@ class Users extends CI_Controller{
 
     function create_user(){
         $this->load->model('user');
+        $this->load->library('session');
         $data['error'] = 0;
         if($_POST){
             $email = $this->input->post('email',true);
@@ -57,6 +58,9 @@ class Users extends CI_Controller{
             }
             redirect(base_url().'posts/index');
         }
+        $this->load->helper('form');
+        $this->load->view('header');
         $this->load->view('createuser',$data);
+        $this->load->view('footer');
     }
 }

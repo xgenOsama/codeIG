@@ -40,6 +40,7 @@
 <body>
     <?php if($this->session->userdata('userID')){ ?>
         <p>you are logged in :)</p>
+        <p>user type : <?=$this->session->userdata('user_type') ?></p>
         <p><a href="<?=base_url()?>users/logout">logout</a></p>
     <?php } else {?>
         <p><a href="<?=base_url()?>users/login">login</a></p>
@@ -56,7 +57,11 @@
               foreach ($posts as $post) {
                   ?>
                   <div class="post">
-                  <h2><a href="<?= base_url() ?>posts/post/<?= $post['postID'] ?>"><?= $post['title'] ?></a> | <a href="<?=base_url()?>posts/editpost/<?=$post['postID']?>">Edit</a> | <a href="<?=base_url()?>posts/deletepost/<?=$post['postID']?>">Delete</a></h2>
+                  <h2><a href="<?= base_url() ?>posts/post/<?= $post['postID'] ?>"><?= $post['title'] ?></a>
+                      <?php if($this->session->userdata('user_type') != 'user' && $this->session->userdata('user_type') != '') {?>
+                      | <a href="<?=base_url()?>posts/editpost/<?=$post['postID']?>">Edit</a> | <a href="<?=base_url()?>posts/deletepost/<?=$post['postID']?>">Delete</a>
+                  <?php } ?>
+                  </h2>
                   <p><?= substr(strip_tags($post['post']), 0, 200) . ".." ?></p>
                   <p><a href="<?= base_url() ?>posts/post/<?= $post['postID'] ?>">Read more</a></p>
                   <p class="date">published at: <span style="color: #E13300"><?=$post['data_added'] ?></span></p>
