@@ -28,8 +28,6 @@ class Upload extends CI_Controller{
             $data = array('upload_data' => $this->upload->data());
             $this->resize($data['upload_data']['full_path'],$data['upload_data']['file_name']);
             unlink($data['upload_data']['full_path']);
-           /* print_r($data);
-            exit();*/
             $this->load->view('upload_success',$data);
         }
     }
