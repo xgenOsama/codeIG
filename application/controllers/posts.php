@@ -10,6 +10,7 @@ class Posts extends CI_controller{
         parent::__construct();
         $this->load->library('session');
         $this->load->model('post');
+        $this->load->helper('form');
     }
 
     function index($start=0){
@@ -29,7 +30,9 @@ class Posts extends CI_controller{
 
     /// codeigniter understand this as post/{id}
     function post($postID){
+        $this->load->model('comment');
         $data['post'] = $this->post->get_post($postID);
+        $data['comments'] = $this->comment->get_comments($postID);
         $this->load->view('post',$data);
     }
 

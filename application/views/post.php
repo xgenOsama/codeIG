@@ -45,6 +45,29 @@
                        <p><?= $post['post'] ?></p>
                        <p class="date">published at: <span style="color: #E13300"><?=$post['data_added'] ?></span></p>
                    </div>
+                   <hr>
+                   <h2>Comments</h2>
+                   <?php if(count($comments) > 0) { ?>
+                   <?php foreach($comments as $comment){   ?>
+                    <p><strong><?=$comment['username'] ?></strong> said at <?=date('m/d/Y H:i A',strtotime($comment['date_added'])) ?><br/>
+                    <?=$comment['comment']?>
+                     <a href="<?=base_url()?>comments/delete_comment/<?=$post['postID']?>/<?=$comment['commentID']?>">Delete</a>
+                    </p>
+                    <hr/>
+                    <?php } ?>
+
+                    <?php }else{ ?>
+                       <p>There are currently no comment</p>
+                   <?php }?>
+                   <?= form_open(base_url().'comments/add_comment/'.$post['postID']) ?>
+                   <?php
+                   $data_form = [
+                       'name' => 'comment'
+                   ];
+                   echo form_textarea($data_form);
+                   ?>
+                   <p><?= form_submit('','Add comment') ?></p>
+                   <?=form_close() ?>
                 <?php } ?>
             </div>
         </div>

@@ -21,7 +21,6 @@ class Users extends CI_Controller{
                 redirect(base_url().'posts');
             }
         }
-
         $this->load->view('header');
         $this->load->view('login',$data);
         $this->load->view('footer');
@@ -67,7 +66,6 @@ class Users extends CI_Controller{
                     'rules' => 'trim|required|is_unique[users.email]|valid_email'
                 )
             ];
-
             $this->load->library('form_validation');
 
             $this->form_validation->set_rules($config);
@@ -96,6 +94,7 @@ class Users extends CI_Controller{
             redirect(base_url().'posts/index');
         }
         }
+      
         $this->load->helper('form');
         $this->load->view('header');
         $this->load->view('createuser',$data);
